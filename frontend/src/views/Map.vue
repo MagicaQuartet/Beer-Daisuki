@@ -1,7 +1,7 @@
 <template>
-  <div class="home">
+  <div class="map">
     <!--HelloWorld msg="Welcome to Your Vue.js App" /-->
-    Test page - home
+    Test page - map
   </div>
 </template>
 
@@ -10,7 +10,7 @@
 // import HelloWorld from "@/components/HelloWorld.vue";
 
 export default {
-  name: "Home",
+  name: "Map",
   components: {}
 };
 </script>
