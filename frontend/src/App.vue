@@ -52,6 +52,12 @@
             </v-list-item-icon>
             <v-list-item-title>맥주 지도</v-list-item-title>
           </v-list-item>
+          <v-list-item to="/temp" exact>
+            <v-list-item-icon>
+              <v-icon>mdi-flask-outline</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>실험실</v-list-item-title>
+          </v-list-item>
         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
@@ -74,7 +80,7 @@ export default {
 
   data: () => ({
     drawer: false,
-    group: ""
-  })
+    group: "",
+  }),
 };
 </script>

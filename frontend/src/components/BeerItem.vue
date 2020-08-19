@@ -1,7 +1,7 @@
 <template>
   <v-card class="beer-item d-flex my-4 px-4 align-center" min-width="768px">
     <div class="beer-image-wrapper d-flex justify-center">
-      <img class="beer-image" :src="beerImg" />
+      <img class="beer-image" :src="imgSrc.beer" />
     </div>
     <v-container class="ml-6">
       <v-row>
@@ -21,17 +21,17 @@
             half-icon="mdi-star-half-full"
             dense
             small
-            :value="rating"
+            :value="calculatedRating"
           ></v-rating>
           <span
             class="ml-2 mt-1 text-subtitle-2 font-weight-bold amber--text darken-4"
-            >{{ rating }}</span
+            >{{ calculatedRating.toFixed(1) }}</span
           >
         </v-col>
       </v-row>
       <v-row class="align-center">
         <v-col class="d-flex align-center" cols="auto">
-          <img class="brewery-image" :src="breweryImg" />
+          <img class="brewery-image" :src="imgSrc.brewery" />
           <span class="brewery-name ml-2 text-subtitle-2">{{ brewery }}</span>
         </v-col>
       </v-row>
@@ -42,15 +42,14 @@
 <script>
 export default {
   name: "BeerItem",
-  props: [
-    "name",
-    "brewery",
-    "country",
-    "type",
-    "beerImg",
-    "breweryImg",
-    "rating"
-  ]
+  props: ["name", "type", "brewery", "country", "rating", "imgSrc"],
+  computed: {
+    calculatedRating: function() {
+      return this.rating.count !== 0
+        ? this.rating.score / this.rating.count
+        : 0;
+    },
+  },
 };
 </script>
 
