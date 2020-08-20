@@ -40,7 +40,10 @@ app.use(function (err, req, res, next) {
 // mongoDB
 mongoose.Promise = global.Promise;
 mongoose
-  .connect("mongodb://localhost/beer-daisuki", { useNewUrlParser: true })
+  .connect("mongodb://mongodb/beer-daisuki", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() => console.log("Successfully connected to mongodb"))
   .catch((e) => console.error(e));
 
