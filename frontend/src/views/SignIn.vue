@@ -38,16 +38,18 @@ export default {
       const username = this.username;
       const password = this.password;
 
-      this.$axios
-        .post("/api/auth/signin", {
+      this.$store
+        .dispatch("user/validateUser", {
           username,
           password,
         })
-        .then((res) => {
-          component.$router.push({ path: "beer" });
+        .then((user) => {
+          component.$router.push({
+            name: "Beer",
+          });
         })
         .catch((err) => {
-          alert("로그인 실패!");
+          alert(err);
         });
     },
   },

@@ -12,20 +12,33 @@
 
       <v-spacer></v-spacer>
 
-      <router-link
-        to="/signin"
-        class="subtitle mx-2 white--text font-weight-medium text-decoration-none"
-      >
-        Sign in
-      </router-link>
+      <div v-if="username === null">
+        <router-link
+          to="/signin"
+          class="subtitle mx-2 white--text font-weight-medium text-decoration-none"
+        >
+          Sign in
+        </router-link>
 
-      <router-link
-        to="/signup"
-        class="subtitle mx-2 px-2 py-1 white--text font-weight-medium text-decoration-none rounded"
-        style="border: 2px solid white;"
-      >
-        Sign Up
-      </router-link>
+        <router-link
+          to="/signup"
+          class="subtitle mx-2 px-3 py-2 white--text font-weight-medium text-decoration-none rounded"
+          style="border: 2px solid white;"
+        >
+          Sign Up
+        </router-link>
+      </div>
+      <div v-else>
+        <span class="subtitle mx-2 white--text font-weight-medium"
+          >Hello, {{ username }}!</span
+        >
+        <a
+          class="subtitle mx-2 px-3 py-2 white--text font-weight-medium text-decoration-none rounded"
+          style="border: 2px white solid"
+          @click.prevent="signOut"
+          >Sign Out</a
+        >
+      </div>
     </v-app-bar>
 
     <v-navigation-drawer v-model="drawer" fixed temporary>
@@ -82,7 +95,19 @@ export default {
 
   data: () => ({
     drawer: false,
-    group: ""
-  })
+    group: "",
+  }),
+
+  computed: {
+    username: function() {
+      return this.$store.getters["user/getUsername"];
+    },
+  },
+
+  methods: {
+    signOut: async function() {
+      await this.$store.dispatch("user/signOut");
+    },
+  },
 };
 </script>
