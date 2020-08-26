@@ -12,18 +12,20 @@
 
       <v-spacer></v-spacer>
 
-      <a
+      <router-link
+        to="/signin"
         class="subtitle mx-2 white--text font-weight-medium text-decoration-none"
       >
         Sign in
-      </a>
+      </router-link>
 
-      <a
+      <router-link
+        to="/signup"
         class="subtitle mx-2 px-2 py-1 white--text font-weight-medium text-decoration-none rounded"
         style="border: 2px solid white;"
       >
         Sign Up
-      </a>
+      </router-link>
     </v-app-bar>
 
     <v-navigation-drawer v-model="drawer" fixed temporary>
@@ -80,7 +82,7 @@ export default {
 
   data: () => ({
     drawer: false,
-    group: "",
-  }),
+    group: ""
+  })
 };
 </script>
