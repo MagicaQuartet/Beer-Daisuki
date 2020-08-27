@@ -111,3 +111,9 @@ export default {
   },
 };
 </script>
+
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Fredoka+One&family=Noto+Sans+KR:wght@100;400;700&display=swap");
+/* font-family: "Fredoka One", cursive; */
+/* font-family: "Noto Sans KR", sans-serif; */
+</style>

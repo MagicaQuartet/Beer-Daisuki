@@ -4,11 +4,16 @@ import store from "../store";
 
 Vue.use(VueRouter);
 
+const defaultTitle = "Beer-Daisuki";
+
 const routes = [
   {
     path: "/",
     name: "Home",
     component: () => import("../views/Home.vue"),
+    meta: {
+      title: "Home",
+    },
   },
   {
     path: "/beer",
@@ -19,6 +24,7 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/Beer.vue"),
     meta: {
+      title: "Beer",
       requiresAuth: true,
     },
   },
@@ -27,6 +33,7 @@ const routes = [
     name: "Map",
     component: () => import("../views/Map.vue"),
     meta: {
+      title: "Map",
       requiresAuth: true,
     },
   },
@@ -35,18 +42,26 @@ const routes = [
     name: "Temp",
     component: () => import("../views/Temp.vue"),
     meta: {
+      title: "Admin",
       requiresAuth: true,
+      requiresAdmin: true,
     },
   },
   {
     path: "/signup",
     name: "SignUp",
     component: () => import("../views/SignUp.vue"),
+    meta: {
+      title: "Sign Up",
+    },
   },
   {
     path: "/signin",
     name: "SignIn",
     component: () => import("../views/SignIn.vue"),
+    meta: {
+      title: "Sign In",
+    },
   },
 ];
 
@@ -67,6 +82,12 @@ router.beforeEach((to, from, next) => {
   } else {
     next();
   }
+});
+
+router.afterEach((to, from) => {
+  Vue.nextTick(() => {
+    document.title = `${to.meta.title} | ${defaultTitle}`;
+  });
 });
 
 export default router;
